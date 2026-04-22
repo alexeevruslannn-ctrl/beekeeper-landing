@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Личная страница пчеловода</title>
+    <meta
+      name="description"
+      content="Личная страница пчеловода: натуральный мёд, пасека, история и контакты."
+    />
+    <style>
+      :root {
+        --bg: #fffaf0;
+        --card: rgba(255, 255, 255, 0.72);
+        --text: #2f2414;
+        --muted: #6f5a37;
+        --accent: #d89b1d;
+        --accent-dark: #b47900;
+        --line: rgba(93, 68, 24, 0.12);
+        --shadow: 0 20px 50px rgba(111, 90, 55, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(255, 211, 95, 0.28), transparent 28%),
+          radial-gradient(circle at right center, rgba(216, 155, 29, 0.14), transparent 24%),
+          linear-gradient(180deg, #fffaf0 0%, #fff6de 100%);
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 250, 240, 0.72);
+        border-bottom: 1px solid var(--line);
+        z-index: 10;
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        font-size: 14px;
+      }
+
+      .nav-links a,
+      .link {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(216, 155, 29, 0.12);
+        color: var(--accent-dark);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      h1 {
+        font-size: clamp(40px, 7vw, 72px);
+        line-height: 0.96;
+        margin: 18px 0 18px;
+        letter-spacing: -0.04em;
+      }
+
+      .lead {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 58ch;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 20px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .button:hover { transform: translateY(-1px); }
+      .button-primary {
+        background: linear-gradient(135deg, var(--accent) 0%, #f4b52a 100%);
+        color: #1f180d;
+        box-shadow: 0 14px 30px rgba(216, 155, 29, 0.25);
+      }
+
+      .button-secondary {
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(255,255,255,0.6);
+      }
+
+      .hero-card,
+      .card {
+        background: var(--card);
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: var(--shadow);
+        border-radius: 28px;
+      }
+
+      .hero-card {
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card::before,
+      .hero-card::after {
+        content: "⬢";
+        position: absolute;
+        color: rgba(216, 155, 29, 0.12);
+        font-size: 120px;
+        line-height: 1;
+      }
+
+      .hero-card::before { top: -12px; right: 8px; }
+      .hero-card::after { bottom: -28px; left: 12px; }
+
+      .photo {
+        height: 420px;
+        border-radius: 22px;
+        background:
+          linear-gradient(rgba(70, 46, 8, 0.2), rgba(70, 46, 8, 0.2)),
+          url('https://images.unsplash.com/photo-1471943311424-646960669fbc?auto=format&fit=crop&w=1200&q=80') center/cover;
+      }
+
+      .stat-grid,
+      .feature-grid,
+      .testimonial-grid,
+      .footer-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 18px;
+      }
+
+      .stat {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.62);
+        border: 1px solid var(--line);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      section {
+        padding: 28px 0;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: clamp(28px, 4vw, 42px);
+        margin: 0;
+        letter-spacing: -0.03em;
+      }
+
+      .section-copy {
+        color: var(--muted);
+        max-width: 58ch;
+        line-height: 1.7;
+      }
+
+      .feature-grid,
+      .testimonial-grid,
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(216, 155, 29, 0.12);
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .card p,
+      .testimonial,
+      .faq-item p,
+      footer p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .quote {
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .faq {
+        display: grid;
+        gap: 14px;
+      }
+
+      .faq-item {
+        padding: 20px 22px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.62);
+      }
+
+      .faq-item strong {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      footer {
+        padding: 28px 0 56px;
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .feature-grid,
+        .testimonial-grid,
+        .footer-grid,
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links { display: none; }
+        .photo { height: 320px; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <div class="brand">🐝 Пасека</div>
+        <div class="nav-links">
+          <a href="#about">Обо мне</a>
+          <a href="#honey">Мёд</a>
+          <a href="#story">История</a>
+          <a href="#contact">Контакты</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Личная страница пчеловода</span>
+          <h1>Натуральный мёд, честная пасека и любовь к делу.</h1>
+          <p class="lead">
+            Я пчеловод и бережно работаю с пасекой, чтобы получать чистый, ароматный мёд без лишнего шума и лишних обещаний. Здесь — немного обо мне, о моей пасеке и о том, как со мной связаться.
+          </p>
+          <div class="cta-row">
+            <a class="button button-primary" href="#contact">Связаться со мной</a>
+            <a class="button button-secondary" href="#about">Узнать больше</a>
+          </div>
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>12+</strong>
+              сезонов рядом с пасекой
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              натуральный продукт
+            </div>
+            <div class="stat">
+              <strong>1 дело</strong>
+              которое делаю с душой
+            </div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="photo" aria-label="Фото пасеки"></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Обо мне</h2>
+              <p class="section-copy">
+                Эта страница — спокойная визитка пчеловода. Её легко потом наполнить твоим именем, фотографиями, сортами мёда, географией и реальными контактами.
+              </p>
+            </div>
+          </div>
+          <div class="feature-grid">
+            <div class="card">
+              <div class="tag">Подход</div>
+              <h3>Без суеты и лишней мишуры</h3>
+              <p>Мне важны качество продукта, здоровье пчёл и уважение к природе. Поэтому я делаю ставку на аккуратную работу и понятный результат.</p>
+            </div>
+            <div class="card">
+              <div class="tag">Пасека</div>
+              <h3>Небольшая, живая, настоящая</h3>
+              <p>Пасека для меня — это не поток, а ремесло. Я знаю свои семьи, слежу за состоянием ульев и не гонюсь за количеством любой ценой.</p>
+            </div>
+            <div class="card">
+              <div class="tag">Продукт</div>
+              <h3>Мёд с характером сезона</h3>
+              <p>Каждый сбор отличается по вкусу, цвету и аромату. В этом и есть ценность настоящего мёда — он не одинаковый, а живой.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="honey">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Что здесь можно показать</h2>
+              <p class="section-copy">Этот блок можно быстро адаптировать под реальные сорта, цены, фасовки и сезонные предложения.</p>
+            </div>
+          </div>
+          <div class="feature-grid">
+            <div class="card">
+              <div class="tag">Цветочный мёд</div>
+              <p>Мягкий аромат, тёплый оттенок, универсальный вкус — для чая, сыров и просто ложкой из банки.</p>
+            </div>
+            <div class="card">
+              <div class="tag">Липовый мёд</div>
+              <p>Более яркий и насыщенный вкус, с характерной свежестью и долгим послевкусием.</p>
+            </div>
+            <div class="card">
+              <div class="tag">Подарочные наборы</div>
+              <p>Небольшие банки, наборы для близких, сезонные упаковки и уютные подарки без пафоса.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Немного истории</h2>
+              <p class="section-copy">На личной странице важно не только продавать, но и вызывать доверие. История здесь работает лучше сухого прайса.</p>
+            </div>
+          </div>
+          <div class="testimonial-grid">
+            <div class="card">
+              <p class="quote">«Пчеловодство для меня — это ритм, терпение и внимание к мелочам. Когда делаешь всё бережно, это чувствуется и в мёде.»</p>
+            </div>
+            <div class="card">
+              <p class="quote">«Мне важно, чтобы человек понимал, у кого он берёт продукт. Не у безликой витрины, а у живого человека с реальной пасекой.»</p>
+            </div>
+            <div class="card">
+              <p class="quote">«Хорошая личная страница пчеловода — это не маркетинговый крик, а спокойное доверие. Я как раз это и заложил в дизайн.»</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Частые вопросы</h2>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-item">
+              <strong>Можно ли заменить текст на мои реальные данные?</strong>
+              <p>Да, и это следующий нормальный шаг. Я быстро подставлю имя, город, фото, контакты и точное описание пасеки.</p>
+            </div>
+            <div class="faq-item">
+              <strong>Можно добавить галерею и форму заказа?</strong>
+              <p>Да. Можно сделать простую форму связи, каталог банок, блок с отзывами и даже карту.</p>
+            </div>
+            <div class="faq-item">
+              <strong>Это уже готовый сайт?</strong>
+              <p>Это крепкий стартовый лендинг: красивый, быстрый и понятный. Дальше его можно доработать под твой стиль за 1–2 итерации.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container footer-grid">
+        <div class="card">
+          <div class="tag">Контакты</div>
+          <h3>Готов обсудить заказ или знакомство</h3>
+          <p>Телефон: +7 (___) ___-__-__<br />Telegram: @yourhandle<br />Город / регион: добавить позже</p>
+        </div>
+        <div class="card">
+          <div class="tag">Для доработки</div>
+          <p>Можно добавить имя пчеловода, реальные фото пасеки, ассортимент, цены, отзывы, карту и форму заявки.</p>
+        </div>
+        <div class="card">
+          <div class="tag">Итог</div>
+          <p>Сейчас это уже рабочая личная страница в тёплом premium-стиле. Можно открывать локально и дальше шлифовать под тебя.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
