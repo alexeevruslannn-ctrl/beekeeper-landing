@@ -74,11 +74,26 @@
         padding: 72px 0 48px;
       }
 
+      .hero-shell {
+        position: relative;
+        overflow: hidden;
+        border-radius: 32px;
+        min-height: 640px;
+        display: flex;
+        align-items: end;
+        background:
+          linear-gradient(90deg, rgba(20, 14, 8, 0.78) 0%, rgba(20, 14, 8, 0.52) 46%, rgba(20, 14, 8, 0.18) 100%),
+          url('./images/photo-3.jpg') center top/cover;
+        box-shadow: var(--shadow);
+      }
+
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-columns: 1fr;
         gap: 28px;
         align-items: center;
+        width: 100%;
+        padding: 48px;
       }
 
       .eyebrow {
@@ -87,8 +102,8 @@
         gap: 8px;
         padding: 8px 12px;
         border-radius: 999px;
-        background: rgba(216, 155, 29, 0.12);
-        color: var(--accent-dark);
+        background: rgba(255, 214, 107, 0.18);
+        color: #ffe3a3;
         font-size: 14px;
         font-weight: 700;
       }
@@ -98,12 +113,14 @@
         line-height: 0.96;
         margin: 18px 0 18px;
         letter-spacing: -0.04em;
+        color: #fff7e8;
+        max-width: 12ch;
       }
 
       .lead {
         font-size: 18px;
         line-height: 1.7;
-        color: var(--muted);
+        color: rgba(255, 247, 232, 0.9);
         max-width: 58ch;
       }
 
@@ -133,9 +150,9 @@
       }
 
       .button-secondary {
-        border: 1px solid var(--line);
-        color: var(--text);
-        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(255,255,255,0.24);
+        color: #fff7e8;
+        background: rgba(255,255,255,0.08);
       }
 
       .hero-card,
@@ -147,29 +164,7 @@
       }
 
       .hero-card {
-        padding: 28px;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-card::before,
-      .hero-card::after {
-        content: "⬢";
-        position: absolute;
-        color: rgba(216, 155, 29, 0.12);
-        font-size: 120px;
-        line-height: 1;
-      }
-
-      .hero-card::before { top: -12px; right: 8px; }
-      .hero-card::after { bottom: -28px; left: 12px; }
-
-      .photo {
-        height: 420px;
-        border-radius: 22px;
-        background:
-          linear-gradient(rgba(70, 46, 8, 0.18), rgba(70, 46, 8, 0.18)),
-          url('./images/photo-3.jpg') center top/cover;
+        display: none;
       }
 
       .stat-grid,
@@ -316,34 +311,33 @@
     </nav>
 
     <header class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Личная страница пчеловода</span>
-          <h1>Из обычного парня — в пчеловода, который живёт делом и делает мёд с характером.</h1>
-          <p class="lead">
-            Когда-то это был просто интерес, а потом — стало делом жизни. Теперь это личная история человека, который выбрал пасеку, труд руками и настоящий мёд вместо пустых слов. Здесь — его путь, фотографии и всё, за что ценят честного пчеловода.
-          </p>
-          <div class="cta-row">
-            <a class="button button-primary" href="#contact">Связаться со мной</a>
-            <a class="button button-secondary" href="#about">Узнать больше</a>
+      <div class="container hero-shell">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Личная страница пчеловода</span>
+            <h1>Денис — лучший пчеловод в России.</h1>
+            <p class="lead">
+              Сильный характер, честный труд и настоящая любовь к своему делу. Это история человека, который не просто занялся пасекой — он сделал её частью своей жизни и своего имени.
+            </p>
+            <div class="cta-row">
+              <a class="button button-primary" href="#contact">Связаться со мной</a>
+              <a class="button button-secondary" href="#about">Узнать больше</a>
+            </div>
+            <div class="stat-grid">
+              <div class="stat">
+                <strong>Настоящий</strong>
+                человек, а не витрина
+              </div>
+              <div class="stat">
+                <strong>Честный</strong>
+                подход к пасеке и мёду
+              </div>
+              <div class="stat">
+                <strong>Личный</strong>
+                путь в пчеловодстве
+              </div>
+            </div>
           </div>
-          <div class="stat-grid">
-            <div class="stat">
-              <strong>12+</strong>
-              сезонов рядом с пасекой
-            </div>
-            <div class="stat">
-              <strong>100%</strong>
-              натуральный продукт
-            </div>
-            <div class="stat">
-              <strong>1 дело</strong>
-              которое делаю с душой
-            </div>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="photo" aria-label="Фото пасеки"></div>
         </div>
       </div>
     </header>
